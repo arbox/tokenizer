@@ -1,0 +1,36 @@
+= Tokenizer
+
+* {RubyGems}[http://rubygems.org/gems/tokenizer]
+* {Developers Homepage}[http://www.uni-trier.de/index.php?id=24140]
+
+== DESCRIPTION
+This _Tokenizer_ is a linguistic tool intended to split a text into tokens.
+
+== INSTALLATION
+
+_Tokenizer_ is provided as a .gem package. Simply install it via RubyGems.
+
+== SYNOPSIS
+
+You can use _Tokenizer_ in two ways.
+  - As a command line tool:
+      $ echo 'Hi, ich gehe in die Schule!. | tokenize
+
+  - As a library for embedded tokenization:
+      $ require 'tokenizer'
+      $ de_tokenizer = Tokenizer::Tokenizer.new
+      $ de_tokenizer.tokenize('Ich gehe in die Schule!")
+      $ => ["Ich", "gehe", "in", "die", "Schule", "!"]
+
+See documentation in the Tokenizer::Tokenizer class for details on particular methods.
+
+== SUPPORT
+
+If you have question, bug reports or any suggestions, please drop me an email :) Any help is deeply appreciated!
+
+== LICENSE
+
+_Tokenizer_ is a copyrighted software by Andrei Beliankou, 2011-
+
+You may use, redistribute and change it under the terms
+provided in the LICENSE.rdoc file.

@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
+
+require 'tokenizer'
+
+de_tokenizer = Tokenizer::Tokenizer.new
+
+while record = gets
+  puts de_tokenizer.tokenize(record)
+end

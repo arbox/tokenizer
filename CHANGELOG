@@ -1,0 +1,16 @@
+= Milestones for the project _Tokenizer_
+
+== 0.0.1
+  - simple tokenization is desired
+== 0.1.0
+  - notion of binary tokenizer and a library for embedded tokenization;
+  - separation of punctuaction marks.
+== 0.2.0
+== 0.3.0
+== 0.4.0
+== 0.5.0
+== 0.6.0
+== 0.7.0
+== 0.8.0
+== 0.9.0
+== 1.0.0
