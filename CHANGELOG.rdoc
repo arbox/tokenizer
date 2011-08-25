@@ -1,6 +1,7 @@
 == COMPLETED
 === 0.1.1
 * Documentation and the whole project tree updated. No functional improvements.
+* Corrected typos.
 === 0.1.0
 * Notion of binary tokenizer and a library for embedded tokenization.
 * Separation of punctuaction marks.
