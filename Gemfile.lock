@@ -1,18 +1,21 @@
 PATH
   remote: .
   specs:
-    tokenizer (0.1.0)
+    tokenizer (0.1.1)
 
 GEM
   remote: http://rubygems.org/
   specs:
     rake (0.8.7)
-    rdoc (3.6.1)
+    rdoc (3.9.3)
+    yard (0.7.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  rake
-  rdoc
+  bundler
+  rake (= 0.8.7)
+  rdoc (>= 3.9.1)
   tokenizer!
+  yard
