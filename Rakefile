@@ -3,12 +3,14 @@ $LOAD_PATH.unshift(lib_path) unless $LOAD_PATH.include?(lib_path)
 
 # Rake provides FileUtils and file lists.
 require 'rake'
+require 'rdoc'
+
 # clean and clobber tasks.
 require 'rake/clean'
-
-SRC = FileList['**/*.rb']
-
-CLOBBER.include('doc', '**/*.html', '**/*.gem')
+CLOBBER.include('rdoc',
+                'ydoc',
+                '.yardoc',
+                '**/*.gem')
 
 # Running tests.
 require 'rake/testtask'
@@ -28,6 +30,14 @@ RDoc::Task.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
 end
 
+require 'yard'
+YARD::Rake::YardocTask.new do |ydoc|
+  ydoc.options +=['-o', 'ydoc']
+end
+
+desc 'Document the code using Yard and RDoc.'
+task :doc => [:clobber, :rdoc, :yard]
+
 # Custom gem building and releasing tasks.
 require 'tokenizer/version'
 desc 'Commit pending changes.'
@@ -40,7 +50,7 @@ end
 
 desc "Build the gem package tokenizer-#{Tokenizer::VERSION}.gem"
 task :build => :clobber do
-  system 'gem build tokenizer.gemspec'
+  system 'bundle exec gem build tokenizer.gemspec'
 end
 
 desc 'Deploy the gem package to RubyGems.'
