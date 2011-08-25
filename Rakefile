@@ -21,9 +21,9 @@ end
 # Generate documentation
 require 'rdoc/task'
 RDoc::Task.new do |rdoc|
-  rdoc.rdoc_files.include('README',
-                          'LICENSE',
-                          'CHANGELOG',
+  rdoc.rdoc_files.include('README.rdoc',
+                          'LICENSE.rdoc',
+                          'CHANGELOG.rdoc',
                           'lib/**/*',
                           'bin/*'
                           )

@@ -21,10 +21,11 @@ Gem::Specification.new do |s|
   s.add_development_dependency('bundler')
   s.required_ruby_version = '>=1.8.7'
   s.files = FileList['lib/**/*.rb',
-                     'README',
-                     'LICENSE',
-                     'CHANGELOG',
+                     'README.rdoc',
+                     'LICENSE.rdoc',
+                     'CHANGELOG.rdoc',
                      '.yardopts',
-                     'test/**/*'].to_a
+                     'test/**/*',
+                     'bin/*'].to_a
   s.test_files = FileList['test/**/*'].to_a
 end
