@@ -2,35 +2,62 @@
 
 * {RubyGems}[http://rubygems.org/gems/tokenizer]
 * {Developers Homepage}[http://www.uni-trier.de/index.php?id=24140]
+* {Source Code}[https://github.com/arbox/tokenizer]
+* {Bug Tracker}[https://github.com/arbox/tokenizer/issues]
 
 == DESCRIPTION
-This _Tokenizer_ is a linguistic tool intended to split a text into tokens.
+A simple multilingual tokenizer -- a linguistic tool intended
+to split a text into tokens for NLP tasks. This tool provides a CLI and
+a library for linguistic tokenization which is an anavoidable step for many HLT
+(human language technology) tasks in the preprocessing phase for further
+syntactic, semantic and other higher level processing goals.
+
+Use it for tokenization of German, English and French texts.
 
 == INSTALLATION
++Tokenizer+ is provided as a .gem package. Simply install it via
+{RubyGems}[http://rubygems.org/gems/tokenizer].
 
-_Tokenizer_ is provided as a .gem package. Simply install it via RubyGems.
+To install +tokenizer+ issue the following command:
+  $ gem install tokenizer
+
+If you want to do a system wide installation, do this as root
+(possibly using +sudo+).
+
+Alternatively use your Gemfile for dependency management.
+
 
 == SYNOPSIS
 
-You can use _Tokenizer_ in two ways.
-  - As a command line tool:
-      $ echo 'Hi, ich gehe in die Schule!. | tokenize
+You can use +Tokenizer+ in two ways.
+* As a command line tool:
+    $ echo 'Hi, ich gehe in die Schule!. | tokenize
 
-  - As a library for embedded tokenization:
-      $ require 'tokenizer'
-      $ de_tokenizer = Tokenizer::Tokenizer.new
-      $ de_tokenizer.tokenize('Ich gehe in die Schule!")
-      $ => ["Ich", "gehe", "in", "die", "Schule", "!"]
+* As a library for embedded tokenization:
+    $ require 'tokenizer'
+    $ de_tokenizer = Tokenizer::Tokenizer.new
+    $ de_tokenizer.tokenize('Ich gehe in die Schule!')
+    $ => ["Ich", "gehe", "in", "die", "Schule", "!"]
 
-See documentation in the Tokenizer::Tokenizer class for details on particular methods.
+See documentation in the Tokenizer::Tokenizer class for details
+on particular methods.
 
 == SUPPORT
 
 If you have question, bug reports or any suggestions, please drop me an email :) Any help is deeply appreciated!
 
+== CHANGELOG
+For details on future plan and working progress see CHANGELOG.rdoc.
+
+== CAUTION
+This library is <b>work in process</b>! Though the interface is mostly complete,
+you might face some not implemented features.
+
+Please contact me with your suggestions, bug reports and feature requests.
+
 == LICENSE
 
-_Tokenizer_ is a copyrighted software by Andrei Beliankou, 2011-
++Tokenizer+ is a copyrighted software by Andrei Beliankou, 2011-
 
 You may use, redistribute and change it under the terms
 provided in the LICENSE.rdoc file.
