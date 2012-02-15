@@ -6,5 +6,5 @@ require 'tokenizer'
 de_tokenizer = Tokenizer::Tokenizer.new
 
 while record = gets
-  puts de_tokenizer.tokenize(record)
+  print de_tokenizer.tokenize(record).join("\n")
 end
