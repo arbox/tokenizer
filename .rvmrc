@@ -1,1 +1,1 @@
-rvm ruby-1.9.2-p180@tokenizer
+rvm use 1.9.2@tokenizer
