@@ -11,13 +11,19 @@
 
 
 == DESCRIPTION
-A simple multilingual tokenizer -- a linguistic tool intended
-to split a text into tokens for NLP tasks. This tool provides a CLI and
-a library for linguistic tokenization which is an anavoidable step for many HLT
-(human language technology) tasks in the preprocessing phase for further
-syntactic, semantic and other higher level processing goals.
+A simple multilingual tokenizer -- a linguistic tool intended to split a text
+into tokens for NLP tasks. This tool provides a CLI and a library for linguistic
+tokenization which is an anavoidable step for many HLT (Human Language Technology)
+tasks in the preprocessing phase for further syntactic, semantic and other
+higher level processing goals.
+
+Tokenization task involves Sentence Segmentation, Word Segmentation and Boundary
+Disambiguation for the both tasks.
 
 Use it for tokenization of German, English and French texts.
+
+=== Implemented Algorithms
+to be ...
 
 == INSTALLATION
 +Tokenizer+ is provided as a .gem package. Simply install it via
