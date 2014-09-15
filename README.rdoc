@@ -1,9 +1,14 @@
 = Tokenizer
 
-* {RubyGems}[http://rubygems.org/gems/tokenizer]
-* {Developers Homepage}[http://www.uni-trier.de/index.php?id=24140]
-* {Source Code}[https://github.com/arbox/tokenizer]
-* {Bug Tracker}[https://github.com/arbox/tokenizer/issues]
+{RubyGems}[http://rubygems.org/gems/tokenizer] |
+{Developers Homepage}[http://bu.chsta.be/projects/tokenizer] |
+{Source Code}[https://github.com/arbox/tokenizer] |
+{Bug Tracker}[https://github.com/arbox/tokenizer/issues]
+
+{<img src="https://badge.fury.io/rb/tokenizer.png" alt="Gem Version" />}[http://badge.fury.io/rb/tokenizer]
+{<img src="https://travis-ci.org/arbox/tokenizer.png" alt="Build Status" />}[https://travis-ci.org/arbox/tokenizer]
+
+
 
 == DESCRIPTION
 A simple multilingual tokenizer -- a linguistic tool intended
