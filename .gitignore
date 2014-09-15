@@ -2,3 +2,4 @@ ydoc
 rdoc
 .yardoc
 *.gem
+.ruby-version
