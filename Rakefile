@@ -63,3 +63,20 @@ desc 'Open an irb session preloaded with this library.'
 task :console do
   sh "irb -I lib -r tokenizer.rb"
 end
+
+task :travis do
+  message = "#{Time.now}\t#{Tokenizer::VERSION}\n"
+  File.open('.gem-version', 'w') do |file|
+    file.write(message)
+  end
+  sh 'git add .gem-version'
+  sh "git commit -m '#{message.chomp}'"
+  sh 'git push origin master'
+end
+
+desc 'Dummy task for testing.'
+task :ping do
+  puts 'All right!'
+end
+
+task :default => :ping
