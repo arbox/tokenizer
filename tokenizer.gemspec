@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.executables << 'tokenize'
   s.extra_rdoc_files = FileList['*.rdoc'].to_a
   s.add_development_dependency('rdoc', '>=3.9.1')
-  s.add_development_dependency('rake', '0.8.7')
+  s.add_development_dependency('rake', '~> 10.3')
   s.add_development_dependency('yard')
   s.add_development_dependency('bundler')
   s.required_ruby_version = '>=1.8.7'
