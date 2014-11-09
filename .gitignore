@@ -3,3 +3,4 @@ rdoc
 .yardoc
 *.gem
 .ruby-version
+Gemfile.lock
