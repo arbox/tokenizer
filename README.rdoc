@@ -1,7 +1,7 @@
 = Tokenizer
 
 {RubyGems}[http://rubygems.org/gems/tokenizer] |
-{Developers Homepage}[http://bu.chsta.be/projects/tokenizer] |
+{Homepage}[http://bu.chsta.be/projects/tokenizer] |
 {Source Code}[https://github.com/arbox/tokenizer] |
 {Bug Tracker}[https://github.com/arbox/tokenizer/issues]
 
@@ -12,15 +12,15 @@
 
 == DESCRIPTION
 A simple multilingual tokenizer -- a linguistic tool intended to split a text
-into tokens for NLP tasks. This tool provides a CLI and a library for linguistic
-tokenization which is an anavoidable step for many HLT (Human Language Technology)
-tasks in the preprocessing phase for further syntactic, semantic and other
-higher level processing goals.
+into tokens for NLP tasks. This tool provides a CLI and a library for
+linguistic tokenization which is an anavoidable step for many HLT (Human
+Language Technology) tasks in the preprocessing phase for further syntactic,
+semantic  and other higher level processing goals.
 
 Tokenization task involves Sentence Segmentation, Word Segmentation and Boundary
 Disambiguation for the both tasks.
 
-Use it for tokenization of German, English and French texts.
+Use it for tokenization of German, English and Dutch texts.
 
 === Implemented Algorithms
 to be ...
@@ -55,7 +55,8 @@ on particular methods.
 
 == SUPPORT
 
-If you have question, bug reports or any suggestions, please drop me an email :) Any help is deeply appreciated!
+If you have question, bug reports or any suggestions, please drop me an email :)
+Any help is deeply appreciated!
 
 == CHANGELOG
 For details on future plan and working progress see CHANGELOG.rdoc.
@@ -70,5 +71,5 @@ Please contact me with your suggestions, bug reports and feature requests.
 
 +Tokenizer+ is a copyrighted software by Andrei Beliankou, 2011-
 
-You may use, redistribute and change it under the terms
-provided in the LICENSE.rdoc file.
+You may use, redistribute and change it under the terms provided
+in the LICENSE.rdoc file.
