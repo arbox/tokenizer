@@ -30,8 +30,6 @@ module Tokenizer
     end
 
     def tokenize(str)
-      tokens = []
-      token = ''
       output = ''
       fields = str.chomp.split(FS)
 #      puts "Fields: #{fields}"
