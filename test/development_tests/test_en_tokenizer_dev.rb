@@ -9,6 +9,8 @@ class TestTokenizerDev < Test::Unit::TestCase
   end
 
   def test_tokenization_001
+    result = @en_tokenizer.tokenize('testing normal, english sentence')
+    assert_equal(['testing', 'normal', ',', 'english', 'sentence', ''], result)
   end
 
   private

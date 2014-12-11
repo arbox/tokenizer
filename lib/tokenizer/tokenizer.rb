@@ -8,21 +8,25 @@ module Tokenizer
 
   class Tokenizer
     FS = Regexp.new('[[:blank:]]+')
-#    PRE = '[{(\\`"‚„†‡‹‘’“”•–—›'
-#    POST = %w| ] } ' ` " ) , ; : \ ! \ ? \ % ‚ „ … † ‡ ‰ ‹ ‘ ’ “ ” • – — › |
     
-    SIMPLE_PRE = [] # spanish marks
-    PAIR_PRE = ['(', '{', '[']
+    # spanish marks
+    SIMPLE_PRE = []
+    PAIR_PRE = ['(', '{', '[', '<']
     SIMPLE_POST = ['!', '?', ',', ':', ';', '.']
-    PAIR_POST = [')', '}', ']']
+    PAIR_POST = [')', '}', ']', '>']
     PRE_N_POST = ['"', "'"]
 
     PRE = SIMPLE_PRE + PAIR_PRE
     POST = SIMPLE_POST + PAIR_POST
     
-    def initialize(lang=:de)
+    def initialize(lang=:de, options={})
       @lang = lang
       @braces = []
+      @options = {
+        PRE: SIMPLE_PRE + PAIR_PRE,
+        POST: SIMPLE_POST + PAIR_POST,
+        PRE_N_POST: PRE_N_POST
+      }.merge(options)
     end
 
     def tokenize(str)
@@ -38,14 +42,14 @@ module Tokenizer
       fields.each do |field|
         field.each_char.with_index do |ch, idx|
           case
-          when PRE.include?(ch)
+          when @options[:PRE].include?(ch)
             output << "#{ch}\n"
-          when POST.include?(ch)
+          when @options[:POST].include?(ch)
             output << "\n#{ch}"
             if ['?', '!', '.'].include?(ch)
               output << "\n"
             end
-          when PRE_N_POST.include?(ch)
+          when @options[:PRE_N_POST].include?(ch)
             if idx == 0
               output << "#{ch}\n"
             elsif idx != 0
