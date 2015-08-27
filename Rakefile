@@ -15,7 +15,7 @@ CLOBBER.include('rdoc',
 # Running tests.
 require 'rake/testtask'
 Rake::TestTask.new do |t|
-  t.test_files = FileList.new('test/**/*.rb').to_a
+  t.test_files = FileList.new('test/regression_tests/*.rb').to_a
 end
 
 # Generate documentation
@@ -32,11 +32,11 @@ end
 
 require 'yard'
 YARD::Rake::YardocTask.new do |ydoc|
-  ydoc.options +=['-o', 'ydoc']
+  ydoc.options += ['-o', 'ydoc']
 end
 
 desc 'Document the code using Yard and RDoc.'
-task :doc => [:clobber, :rdoc, :yard]
+task doc: [:clobber, :rdoc, :yard]
 
 # Custom gem building and releasing tasks.
 require 'tokenizer/version'
@@ -54,10 +54,9 @@ task :build => :clobber do
 end
 
 desc 'Deploy the gem package to RubyGems.'
-task :release => [:commit, :tag, :build] do
+task release: [:commit, :tag, :build] do
   system "gem push tokenizer-#{Tokenizer::VERSION}.gem"
 end
-
 
 desc 'Open an irb session preloaded with this library.'
 task :console do

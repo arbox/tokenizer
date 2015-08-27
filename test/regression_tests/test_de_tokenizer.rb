@@ -1,14 +1,14 @@
-require 'test/unit'
+require 'minitest/autorun'
 require 'tokenizer'
 
-class TestTokenizer < Test::Unit::TestCase
+class TestTokenizer < Minitest::Unit
 
   def setup
     @de_tokenizer = Tokenizer::Tokenizer.new(:de)
   end
 
   def test_constants
-    assert(Tokenizer::VERSION.is_a?(String) && ! Tokenizer::VERSION.empty?)
+    assert(Tokenizer::VERSION.is_a?(String) && Tokenizer::VERSION.any?)
   end
 
   def test_output_type
