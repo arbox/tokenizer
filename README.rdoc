@@ -5,10 +5,10 @@
 {Source Code}[https://github.com/arbox/tokenizer] |
 {Bug Tracker}[https://github.com/arbox/tokenizer/issues]
 
-{<img src="https://badge.fury.io/rb/tokenizer.png" alt="Gem Version" />}[http://badge.fury.io/rb/tokenizer]
-{<img src="https://travis-ci.org/arbox/tokenizer.png" alt="Build Status" />}[https://travis-ci.org/arbox/tokenizer]
-
-
+{<img src="https://img.shields.io/gem/v/tokenizer.svg" alt="Gem Version" />}[https://rubygems.org/gems/tokenizer]
+{<img src="https://img.shields.io/travis/arbox/tokenizer.svg" alt="Build Status" />}[https://travis-ci.org/arbox/tokenizer]
+{<img src="https://img.shields.io/codeclimate/github/arbox/tokenizer.svg" alt="Code Climate" />}[https://codeclimate.com/github/arbox/tokenizer]
+{<img src="https://img.shields.io/gemnasium/arbox/tokenizer.svg" alt="Dependency Status" />}[https://gemnasium.com/arbox/tokenizer]
 
 == DESCRIPTION
 A simple multilingual tokenizer -- a linguistic tool intended to split a text
