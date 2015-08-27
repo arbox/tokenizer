@@ -5,14 +5,21 @@ require 'tokenizer/version'
 require 'rake'
 
 Gem::Specification.new do |s|
-  s.name = "tokenizer"
-  s.summary = 'Tokenizer is a linguistic tool intended to split a text into tokens.'
-  s.description = 'A simple multilingual tokenizer for NLP tasks. This tool provides a CLI and a library for linguistic tokenization which is an anavoidable step for many HLT (human language technology) tasks in the preprocessing phase for further syntactic, semantic and other higher level processing goals. Use it for tokenization of German, English and French texts.'
-  s.rubyforge_project = "tokenizer"
+  s.name = 'tokenizer'
+  s.summary = 'Tokenizer is a tool intended to split a text into tokens.'
+
+  s.description = 'A simple multilingual tokenizer for NLP tasks. This tool '\
+                  'provides a CLI and a library for linguistic tokenization '\
+                  'which is an anavoidable step for many HLT (human language '\
+                  'technology) tasks in the preprocessing phase for further '\
+                  'syntactic, semantic and other higher level processing '\
+                  'goals. Use it for tokenization of German, '\
+                  'English and French texts.'
+  s.rubyforge_project = 'tokenizer'
   s.version = Tokenizer::VERSION
-  s.author = "Andrei Beliankou"
-  s.email = "a.belenkow@uni-trier.de"
-  s.homepage = "http://www.uni-trier.de/index.php?id=34451" # move on qa.uni
+  s.author = 'Andrei Beliankou'
+  s.email = 'arbox@yandex.ru'
+  s.homepage = 'https://github.com/arbox/tokenizer'
   s.executables << 'tokenize'
   s.extra_rdoc_files = FileList['*.rdoc'].to_a
   s.add_development_dependency('rdoc', '>=3.9.1')
