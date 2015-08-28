@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency('rdoc', '>= 3.9.1')
   s.add_development_dependency('rake', '~> 10.3')
   s.add_development_dependency('yard', '~> 0.8')
-  s.add_development_dependency('bundler', '~> 1.10')
+  s.add_development_dependency('bundler', '~> 1.7')
   s.add_development_dependency('minitest', '~> 5.8')
   s.required_ruby_version = '>=1.8.7'
   s.files = FileList['lib/**/*.rb',
