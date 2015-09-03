@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.author = 'Andrei Beliankou'
   s.email = 'arbox@yandex.ru'
   s.homepage = 'https://github.com/arbox/tokenizer'
+  s.license = 'MIT'
   s.executables << 'tokenize'
   s.extra_rdoc_files = FileList['*.rdoc'].to_a
   s.required_ruby_version = '>= 1.9.3'
