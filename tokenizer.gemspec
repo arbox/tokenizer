@@ -22,12 +22,7 @@ Gem::Specification.new do |s|
   s.homepage = 'https://github.com/arbox/tokenizer'
   s.executables << 'tokenize'
   s.extra_rdoc_files = FileList['*.rdoc'].to_a
-  s.add_development_dependency('rdoc', '>= 3.9.1')
-  s.add_development_dependency('rake', '~> 10.3')
-  s.add_development_dependency('yard', '~> 0.8')
-  s.add_development_dependency('bundler', '~> 1.7')
-  s.add_development_dependency('minitest', '~> 5.8')
-  s.required_ruby_version = '>=1.8.7'
+  s.required_ruby_version = '>= 1.9.3'
   s.files = FileList['lib/**/*.rb',
                      'README.rdoc',
                      'LICENSE.rdoc',

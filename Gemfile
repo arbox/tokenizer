@@ -1,5 +1,11 @@
-source "http://rubygems.org"
+source 'https://rubygems.org'
 
-# Specify your gem's dependencies in tokenizer.gemspec
 gemspec
-# short comment for git on windows
+
+group :development do
+  gem 'rdoc', '>= 3.9.1'
+  gem 'rake', '~> 10.3'
+  gem 'yard', '~> 0.8'
+  gem 'bundler', '~> 1.7'
+  gem 'minitest', '~> 5.8'
+end
