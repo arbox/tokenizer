@@ -44,16 +44,16 @@ You can use +Tokenizer+ in two ways.
     $ echo 'Hi, ich gehe in die Schule!. | tokenize
 
 * As a library for embedded tokenization:
-    $ require 'tokenizer'
-    $ de_tokenizer = Tokenizer::Tokenizer.new
-    $ de_tokenizer.tokenize('Ich gehe in die Schule!')
-    $ => ["Ich", "gehe", "in", "die", "Schule", "!"]
+    > require 'tokenizer'
+    > de_tokenizer = Tokenizer::Tokenizer.new
+    > de_tokenizer.tokenize('Ich gehe in die Schule!')
+    > => ["Ich", "gehe", "in", "die", "Schule", "!"]
 
 * Customizable PRE and POST list
-    $ require 'tokenizer'
-    $ de_tokenizer = Tokenizer::Tokenizer.new(:de, { POST: Tokenizer::Tokenizer::POST + ['|'] })
-    $ de_tokenizer.tokenize('Ich gehe|in die Schule!')
-    $ => ["Ich", "gehe", "|in", "die", "Schule", "!"]
+    > require 'tokenizer'
+    > de_tokenizer = Tokenizer::Tokenizer.new(:de, { post: Tokenizer::Tokenizer::POST + ['|'] })
+    > de_tokenizer.tokenize('Ich gehe|in die Schule!')
+    > => ["Ich", "gehe", "|in", "die", "Schule", "!"]
 
 See documentation in the Tokenizer::Tokenizer class for details
 on particular methods.

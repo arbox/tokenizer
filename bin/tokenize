@@ -1,10 +1,9 @@
 #!/usr/bin/env ruby
-# -*- coding: utf-8 -*-
 
 require 'tokenizer'
 
-de_tokenizer = Tokenizer::Tokenizer.new
+tokenizer = Tokenizer::Tokenizer.new
 
-while record = gets
-  print de_tokenizer.tokenize(record).join("\n")
+while (line = gets)
+  puts tokenizer.tokenize(line).join("\n")
 end

@@ -1,8 +1,10 @@
 --private
 --protected
 --title 'A simple tokenizer for NLP tasks.'
+--main README.rdoc
 -
-
 CHANGELOG.rdoc
+README.rdoc
 LICENSE.rdoc
 bin/*
+lib/**/*

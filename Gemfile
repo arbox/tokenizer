@@ -9,4 +9,5 @@ group :development do
   gem 'bundler', '~> 1.7'
   gem 'minitest', '~> 5.8'
   gem 'travis-lint', '~> 2.0'
+  gem 'rubocop', '~> 0.35'
 end

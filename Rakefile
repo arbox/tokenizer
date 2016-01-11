@@ -32,7 +32,7 @@ end
 
 require 'yard'
 YARD::Rake::YardocTask.new do |ydoc|
-  ydoc.options += ['-o', 'ydoc']
+  ydoc.options += ['-o', 'ydoc', '--no-cache']
 end
 
 desc 'Document the code using Yard and RDoc.'
