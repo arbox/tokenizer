@@ -11,7 +11,7 @@
 {<img src="https://img.shields.io/gemnasium/arbox/tokenizer.svg" alt="Dependency Status" />}[https://gemnasium.com/arbox/tokenizer]
 
 == DESCRIPTION
-A simple multilingual tokenizer -- a linguistic tool intended to split a text
+A simple multilingual tokenizer -- a linguistic tool intended to split a written text
 into tokens for NLP tasks. This tool provides a CLI and a library for
 linguistic tokenization which is an anavoidable step for many HLT (Human
 Language Technology) tasks in the preprocessing phase for further syntactic,
@@ -45,17 +45,17 @@ You can use +Tokenizer+ in two ways.
 
 * As a library for embedded tokenization:
     > require 'tokenizer'
-    > de_tokenizer = Tokenizer::Tokenizer.new
+    > de_tokenizer = Tokenizer::WhitespaceTokenizer.new
     > de_tokenizer.tokenize('Ich gehe in die Schule!')
     > => ["Ich", "gehe", "in", "die", "Schule", "!"]
 
 * Customizable PRE and POST list
     > require 'tokenizer'
-    > de_tokenizer = Tokenizer::Tokenizer.new(:de, { post: Tokenizer::Tokenizer::POST + ['|'] })
+    > de_tokenizer = Tokenizer::WhitespaceTokenizer.new(:de, { post: Tokenizer::Tokenizer::POST + ['|'] })
     > de_tokenizer.tokenize('Ich gehe|in die Schule!')
     > => ["Ich", "gehe", "|in", "die", "Schule", "!"]
 
-See documentation in the Tokenizer::Tokenizer class for details
+See documentation in the Tokenizer::WhitespaceTokenizer class for details
 on particular methods.
 
 == SUPPORT

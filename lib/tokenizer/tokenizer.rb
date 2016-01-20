@@ -5,7 +5,7 @@
 # A namespace for all project related stuff.
 module Tokenizer
   # Simple whitespace based tokenizer with configurable punctuation detection.
-  class Tokenizer
+  class WhitespaceTokenizer
     # Default whitespace separator.
     FS = Regexp.new('[[:blank:]]+')
 
@@ -64,10 +64,18 @@ module Tokenizer
 
     private
 
-    # @param [String] User defined string to be tokenized.
+    # @param [String] str User defined string to be tokenized.
     # @return [String] A new modified string.
     def sanitize_input(str)
       str.chomp.strip
     end
   end # class
+
+  # @deprecated Use {WhitespaceTokenizer} instead.
+  class Tokenizer < WhitespaceTokenizer
+    def initialize(*args)
+      warn '[Deprecated!] Use WhitespaceTokenizer instead.'
+      super(*args)
+    end
+  end
 end # module
