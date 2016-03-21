@@ -64,6 +64,7 @@ task :console do
 end
 
 task :travis do
+  sh 'git pull'
   message = "#{Time.now}\t#{Tokenizer::VERSION}\n"
   File.open('.gem-version', 'w') do |file|
     file.write(message)
