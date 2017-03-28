@@ -49,12 +49,22 @@ module Tokenizer
 
       splittables = SIMPLE_PRE + SIMPLE_POST + PAIR_PRE + PAIR_POST + PRE_N_POST
       pattern = Regexp.new("[^#{Regexp.escape(splittables.join)}]+")
+      #most accomodating url regex I found was here:
+      #http://stackoverflow.com/a/24058129/4852737
+      url_pattern = %r{(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+
+                       (:([\d\w]|%[a-fA-f\d]{2,2})+)
+                       ?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]
+                       |%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#
+                       ([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?}
       output = []
       tokens.each do |token|
-        prefix, stem, suffix = token.partition(pattern)
-        output << prefix.split('') unless prefix.empty?
-        output << stem unless stem.empty?
-        output << suffix.split('') unless suffix.empty?
+        if url_pattern.match(token)
+          #if token is validated as a url, if last character is a splittable then split it out
+          output << (splittables.include?(token[-1]) ?
+                      [token[0...-1],token[-1]] : token)
+        else
+          output << partition_and_tokenize(token, pattern)
+        end
       end
 
       output.flatten
@@ -68,6 +78,18 @@ module Tokenizer
     # @return [String] A new modified string.
     def sanitize_input(str)
       str.chomp.strip
+    end
+
+    # @param [String] str string to be partitioned by regex pattern.
+    # @param [Regexp] pattern regex pattern to partition str with.
+    # @return [String] An array representing the partitioned string.
+    def partition_and_tokenize str, pattern
+      output = []
+      prefix, stem, suffix = str.partition(pattern)
+      output << prefix.split('') unless prefix.empty?
+      output << stem unless stem.empty?
+      output << suffix.split('') unless suffix.empty?
+      output
     end
   end # class
 
