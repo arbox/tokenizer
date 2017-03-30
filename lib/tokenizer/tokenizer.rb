@@ -63,7 +63,10 @@ module Tokenizer
           output << (splittables.include?(token[-1]) ?
                       [token[0...-1],token[-1]] : token)
         else
-          output << partition_and_tokenize(token, pattern)
+          prefix, stem, suffix = token.partition(pattern)
+          output << prefix.split('') unless prefix.empty?
+          output << stem unless stem.empty?
+          output << suffix.split('') unless suffix.empty?
         end
       end
 
@@ -78,18 +81,6 @@ module Tokenizer
     # @return [String] A new modified string.
     def sanitize_input(str)
       str.chomp.strip
-    end
-
-    # @param [String] str string to be partitioned by regex pattern.
-    # @param [Regexp] pattern regex pattern to partition str with.
-    # @return [String] An array representing the partitioned string.
-    def partition_and_tokenize str, pattern
-      output = []
-      prefix, stem, suffix = str.partition(pattern)
-      output << prefix.split('') unless prefix.empty?
-      output << stem unless stem.empty?
-      output << suffix.split('') unless suffix.empty?
-      output
     end
   end # class
 
