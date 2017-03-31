@@ -22,7 +22,20 @@ module Tokenizer
     PAIR_POST = [')', '}', ']', '>', '»', '“']
 
     # Characters which can be both prefixes AND suffixes.
-    PRE_N_POST = ['"', "'"]
+    PRE_N_POST = ['"']
+
+    # Characters which can both prefixes and suffixes but are only a splittable
+    # if at the beginning or end of a token with the exception of being prefixed/suffixed
+    # by other splittables.
+    # taking the single quote "'" as a PRE_N_POST_ONLY splittable,
+    # The following would be valid uses as a splittable:
+    # 'test quotes'
+    # 'test quotes'. <- suffixed by another splittable
+    # ('test quotes'). <- prefixed and suffixed by another splittable
+    # The following would not be valid uses as a splittable:
+    # l'interrelation
+    # l'imagerie
+    PRE_N_POST_ONLY = ["'"]
 
     private_constant :FS
 
@@ -49,12 +62,50 @@ module Tokenizer
 
       splittables = SIMPLE_PRE + SIMPLE_POST + PAIR_PRE + PAIR_POST + PRE_N_POST
       pattern = Regexp.new("[^#{Regexp.escape(splittables.join)}]+")
+      pattern_prepostonly_pfix =
+          Regexp.new("^[#{Regexp.escape((splittables + PRE_N_POST_ONLY).join)}]*[#{
+          Regexp.escape(PRE_N_POST_ONLY.join)}]+[#{
+          Regexp.escape((splittables + PRE_N_POST_ONLY).join)}]*")
+      pattern_prepostonly_sfix =
+          Regexp.new("[#{Regexp.escape((splittables + PRE_N_POST_ONLY).join)}]*[#{
+                         Regexp.escape(PRE_N_POST_ONLY.join)}]+[#{
+                         Regexp.escape((splittables + PRE_N_POST_ONLY).join)}]*$")
+      #most accomodating url regex I found was here:
+      #http://stackoverflow.com/a/24058129/4852737
+      url_pattern = %r{(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+
+                       (:([\d\w]|%[a-fA-f\d]{2,2})+)
+                       ?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]
+                       |%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#
+                       ([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?}
       output = []
       tokens.each do |token|
-        prefix, stem, suffix = token.partition(pattern)
-        output << prefix.split('') unless prefix.empty?
-        output << stem unless stem.empty?
-        output << suffix.split('') unless suffix.empty?
+        if url_pattern.match(token)
+          #if token is validated as a url, if last character is a splittable then split it out
+          output << (splittables.include?(token[-1]) ?
+                      [token[0...-1],token[-1]] : token)
+        else
+          #if prefix chars are PRE_N_POST_ONLY splittable then split
+          prefix, stem, suffix = token.partition(pattern_prepostonly_pfix)
+          output << stem.split('') unless stem.empty?
+          token_remaining = stem.empty? ? prefix : suffix
+          prefix, stem, suffix = token_remaining.partition(pattern)
+          output << prefix.split('') unless prefix.empty?
+          unless stem.empty?
+            #if suffix chars are any splittable including PRE_N_POST_ONLY then split
+            prefix, stem, suffix_discard = stem.partition(pattern_prepostonly_sfix)
+            output << prefix unless prefix.empty?
+            output << stem.split('') unless stem.empty?
+          end
+          #while suffix is not empty, take the first character as a splittable token,
+          #and partition remaining suffix
+          while suffix.length > 0
+            prior_suffix = suffix
+            output << suffix[0]
+            prefix, stem, suffix = prior_suffix[1..-1].partition(pattern)
+            output << prefix.split('') unless prefix.empty?
+            output << stem unless stem.empty?
+          end
+        end
       end
 
       output.flatten
