@@ -6,7 +6,7 @@ require 'tokenizer'
 class TestTokenizer < Minitest::Test
 
   def setup
-    @t = Tokenizer::Tokenizer.new(:de)
+    @t = Tokenizer::WhitespaceTokenizer.new(:de)
   end
 
   def test_constants
@@ -94,12 +94,27 @@ class TestTokenizer < Minitest::Test
     output = @t.tokenize(input)
     assert_equal(etalon, output)
   end
+
+  def test_tokenization_012
+    input = "“et souligne ‘l’interrelation étroite de l'imagerie’ avec le comportement”."
+    etalon = %w(“ et souligne ‘ l’interrelation étroite de l'imagerie ’ avec le comportement ” .)
+    output = @t.tokenize(input)
+    assert_equal(etalon, output)
+  end
+
+  def test_tokenization_options
+    input = "Check option: ^test splitter^ is utilized."
+    etalon = %w(Check option : ^ test splitter ^ is utilized .)
+    output = Tokenizer::WhitespaceTokenizer.new(:de, pre_n_post: ["^"])
+                .tokenize(input)
+    assert_equal(etalon, output)
+  end
 end
 
 describe Tokenizer do
   describe 'empty input' do
     it 'should return an Array with an empty string' do
-      tokens = Tokenizer::Tokenizer.new.tokenize('')
+      tokens = Tokenizer::WhitespaceTokenizer.new.tokenize('')
       tokens.must_equal([''])
     end
   end

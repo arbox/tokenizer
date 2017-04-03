@@ -16,13 +16,13 @@ module Tokenizer
     SIMPLE_POST = ['!', '?', ',', ':', ';', '.']
 
     # Characters as splittable prefixes with an optional matching suffix.
-    PAIR_PRE = ['(', '{', '[', '<', '«', '„']
+    PAIR_PRE = ['(', '{', '[', '<', '«', '„','“','‘']
 
     # Characters as splittable suffixes with an optional matching prefix.
-    PAIR_POST = [')', '}', ']', '>', '»', '“']
+    PAIR_POST = [')', '}', ']', '>', '»', '”']
 
     # Characters which can be both prefixes AND suffixes.
-    PRE_N_POST = ['"']
+    PRE_N_POST = ['"','`']
 
     # Characters which can both prefixes and suffixes but are only a splittable
     # if at the beginning or end of a token with the exception of being prefixed/suffixed
@@ -35,7 +35,7 @@ module Tokenizer
     # The following would not be valid uses as a splittable:
     # l'interrelation
     # l'imagerie
-    PRE_N_POST_ONLY = ["'"]
+    PRE_N_POST_ONLY = ["'","’"]
 
     private_constant :FS
 
@@ -50,7 +50,8 @@ module Tokenizer
       @options = {
         pre: SIMPLE_PRE + PAIR_PRE,
         post: SIMPLE_POST + PAIR_POST,
-        pre_n_post: PRE_N_POST
+        pre_n_post: PRE_N_POST,
+        pre_n_post_only: PRE_N_POST_ONLY
       }.merge(options)
     end
 
@@ -60,16 +61,16 @@ module Tokenizer
       tokens = sanitize_input(str).split(FS)
       return [''] if tokens.empty?
 
-      splittables = SIMPLE_PRE + SIMPLE_POST + PAIR_PRE + PAIR_POST + PRE_N_POST
+      splittables = (@options[:pre] + @options[:post] + @options[:pre_n_post]).flatten
       pattern = Regexp.new("[^#{Regexp.escape(splittables.join)}]+")
       pattern_prepostonly_pfix =
-          Regexp.new("^[#{Regexp.escape((splittables + PRE_N_POST_ONLY).join)}]*[#{
-          Regexp.escape(PRE_N_POST_ONLY.join)}]+[#{
-          Regexp.escape((splittables + PRE_N_POST_ONLY).join)}]*")
+          Regexp.new("^[#{Regexp.escape((splittables + @options[:pre_n_post_only]).join)}]*[#{
+          Regexp.escape(@options[:pre_n_post_only].join)}]+[#{
+          Regexp.escape((splittables + @options[:pre_n_post_only]).join)}]*")
       pattern_prepostonly_sfix =
-          Regexp.new("[#{Regexp.escape((splittables + PRE_N_POST_ONLY).join)}]*[#{
-                         Regexp.escape(PRE_N_POST_ONLY.join)}]+[#{
-                         Regexp.escape((splittables + PRE_N_POST_ONLY).join)}]*$")
+          Regexp.new("[#{Regexp.escape((splittables + @options[:pre_n_post_only]).join)}]*[#{
+                         Regexp.escape(@options[:pre_n_post_only].join)}]+[#{
+                         Regexp.escape((splittables + @options[:pre_n_post_only]).join)}]*$")
       #most accomodating url regex I found was here:
       #http://stackoverflow.com/a/24058129/4852737
       url_pattern = %r{(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+
